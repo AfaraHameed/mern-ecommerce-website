@@ -3,6 +3,11 @@ const env = require('dotenv');
 const app = express();
 const bodyParser  = require('body-parser');
 const mongoose = require('mongoose');
+
+//routes
+
+const userRoutes = require('./routes/user')
+
 env.config();
 
 //mongodb connection
@@ -19,6 +24,9 @@ mongoose.connect(
     console.log('database connected')
 });
 app.use(bodyParser())
+
+app.use('/api',userRoutes)
+
 app.get('/',(req,res,next)=>{
     res.status(200).json({
         message:'hello from server'
