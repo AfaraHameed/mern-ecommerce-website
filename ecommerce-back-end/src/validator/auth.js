@@ -1,6 +1,6 @@
 const { check , validationResult} = require('express-validator')
 
-exports.validateRequest = [
+exports.validateSignupRequest = [
     check('firstName')
     .notEmpty()
     .withMessage("first name is required"),
@@ -14,6 +14,18 @@ exports.validateRequest = [
     .isLength( {min:6 })
     .withMessage('password must atleast 6 charecter long')
 ]
+
+
+exports.validateSigninRequest = [
+    
+    check('email')
+    .isEmail()
+    .withMessage('valid email required'),
+    check('password')
+    .isLength( {min:6 })
+    .withMessage('password must atleast 6 charecter long')
+]
+
 
 exports.isRequestValidated = ( req , res , next ) =>{
 
